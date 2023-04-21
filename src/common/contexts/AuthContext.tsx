@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { UserModel } from '../models/user.model';
 import {
@@ -6,6 +6,7 @@ import {
   storageUserRemove,
   storageUserSave,
 } from '../../storage/storageUser';
+import { CustomModal, CustomModalProps } from '../components/customModal';
 
 type AuthContextDataProps = {
   user?: UserModel;
@@ -28,8 +29,13 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   function signIn(username: UserModel['username']) {
     try {
+      if (username?.trim() === '') {
+        toggleModal('Please fill in the username field 😊');
+        return;
+      }
       setUser({ username });
       storageUserSave({ username });
+      toggleModal(`Welcome, ${username} 😄`);
     } catch (error) {
       throw error;
     }
@@ -65,6 +71,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     loadUserData();
   }, []);
 
+  const modalRef = useRef<CustomModalProps | null>(null);
+  const toggleModal = (message: string) =>
+    modalRef.current && modalRef.current.toggleModal(message);
+
   return (
     <AuthContext.Provider
       value={{
@@ -73,6 +83,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         isLoadingUserStorage,
         signOut,
       }}>
+      <CustomModal ref={modalRef} />
       {children}
     </AuthContext.Provider>
   );

@@ -9,9 +9,7 @@ export const useLoginViewModel = (): LoginViewModel => {
   const [username, setUsername] = useState<string>('');
 
   function handleLogin() {
-    if (username && username.trim() !== '') {
-      signIn(username);
-    }
+    signIn(username);
   }
 
   return {
