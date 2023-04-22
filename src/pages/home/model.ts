@@ -1,6 +1,7 @@
-import { UserModel } from '../../common/models/user.model';
+import { CryptoModel } from '../../common/models/crypto.model';
 
 export interface HomeViewModel {
-  username?: UserModel['username'];
   handleLogout: () => Promise<void>;
+  cryptos: CryptoModel[];
+  isLoading: boolean;
 }

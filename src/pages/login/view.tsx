@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 
   input: {
     backgroundColor: '#DDDDDD',
-    borderRadius: 4,
+    borderRadius: 5,
     alignSelf: 'stretch',
     height: 45,
     padding: 15,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     backgroundColor: '#222222',
     height: 45,
-    borderRadius: 4,
+    borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },

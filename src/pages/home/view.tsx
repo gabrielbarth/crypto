@@ -1,16 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 
 import { Header } from '../../common/components/header';
+import { CryptoCard } from '../../common/components/cryptoCard';
 
 import { useHomeViewModel } from './view.model';
 
 export function HomeScreen() {
-  const { handleLogout, username } = useHomeViewModel();
+  const { handleLogout, cryptos } = useHomeViewModel();
   return (
     <View style={styles.container}>
       <Header onSelectSignOUt={handleLogout} />
-      <Text> HOME SCREEN - {username} </Text>
+      <View style={styles.listContainer}>
+        <FlatList
+          data={cryptos}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <CryptoCard {...item} onSelect={() => {}} />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 }
@@ -19,5 +29,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+  },
+  listContainer: {
+    flex: 1,
+    paddingHorizontal: 15,
   },
 });
