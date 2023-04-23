@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    height: 60,
+    height: 100,
     width: '100%',
     backgroundColor: '#222222',
     padding: 15,
     alignItems: 'flex-end',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   text: {
     textAlign: 'center',

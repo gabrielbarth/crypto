@@ -19,6 +19,7 @@ export function HomeScreen() {
             <CryptoCard {...item} onSelect={() => {}} />
           )}
           showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.flatlist}
         />
       </View>
     </View>
@@ -34,4 +35,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 15,
   },
+  flatlist: { paddingBottom: 30, paddingTop: 15 },
 });
